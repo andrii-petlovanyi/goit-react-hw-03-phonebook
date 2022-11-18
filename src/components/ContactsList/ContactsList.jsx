@@ -2,7 +2,11 @@ import { List } from './ConctactsList.styled';
 import PropTypes from 'prop-types';
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
 
-export const ContactList = ({ contacts, filter, onDelete }) => {
+export const ContactList = ({
+  contacts = [],
+  filter = '',
+  onDelete = () => {},
+}) => {
   if (filter !== '') {
     return;
   }

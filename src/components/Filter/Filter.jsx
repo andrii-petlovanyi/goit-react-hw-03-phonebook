@@ -2,7 +2,11 @@ import PropTypes from 'prop-types';
 import { List, Label, Input } from './Filter.styled';
 import { Box } from '../Box';
 
-export const FilterContacts = ({ onChange, value, onFilter }) => {
+export const FilterContacts = ({
+  onChange = () => {},
+  value = '',
+  onFilter = () => {},
+}) => {
   return (
     <Box
       display="flex"

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { ListItem, ListItemText, BtnDel } from './ContactListItem.styled';
 
-export const ContactListItem = ({ contact, onDelete }) => {
+export const ContactListItem = ({ contact = {}, onDelete = () => {} }) => {
   const { id, name, number } = contact;
   return (
     <ListItem id={id}>
