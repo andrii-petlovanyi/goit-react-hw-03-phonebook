@@ -10,14 +10,18 @@ import {
   BtnDel,
 } from './ContactListItem/ContactListItem.styled';
 
+const KEY_CONTACTS = 'contacts_database';
+
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
 
+  //Life cycles
+
   componentDidMount() {
-    const contacts = JSON.parse(localStorage.getItem('KEY_CONTACTS'));
+    const contacts = JSON.parse(localStorage.getItem(KEY_CONTACTS));
     if (contacts) {
       this.setState({ contacts });
     }
@@ -25,9 +29,11 @@ export class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('KEY_CONTACTS', JSON.stringify(this.state.contacts));
+      localStorage.setItem(KEY_CONTACTS, JSON.stringify(this.state.contacts));
     }
   }
+
+  //
 
   addContact = contact => {
     if (
