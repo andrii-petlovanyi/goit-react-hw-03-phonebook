@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
-import { List, Label, Input } from './Filter.styled';
+import { Label, Input } from './Filter.styled';
 import { Box } from '../Box';
 
-export const FilterContacts = ({
-  onChange = () => {},
-  value = '',
-  onFilter = () => {},
-}) => {
+export const FilterContacts = ({ onChange = () => {}, value = '' }) => {
   return (
     <Box
       display="flex"
@@ -27,7 +23,6 @@ export const FilterContacts = ({
           required
         />
       </Label>
-      {value && <List>{onFilter()}</List>}
     </Box>
   );
 };
@@ -35,5 +30,4 @@ export const FilterContacts = ({
 FilterContacts.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  onFilter: PropTypes.func.isRequired,
 };

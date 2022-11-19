@@ -4,11 +4,6 @@ import { ContactForm } from './ContactsForm/ContactsForm';
 import { FilterContacts } from './Filter/Filter';
 import { ContactList } from './ContactsList/ContactsList';
 import { theme } from './Theme';
-import {
-  ListItemApp,
-  ListItemText,
-  BtnDel,
-} from './ContactListItem/ContactListItem.styled';
 
 const KEY_CONTACTS = 'contacts_database';
 
@@ -61,32 +56,16 @@ export class App extends Component {
   };
 
   onFilter = () => {
-    if (this.state.filter === '') {
-      return;
-    }
-    return this.state.contacts.map(contact => {
-      if (
-        contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
-      ) {
-        return (
-          <ListItemApp key={contact.id}>
-            <ListItemText>
-              <b>{contact.name}</b> : {contact.number}
-            </ListItemText>
-            <BtnDel
-              type="button"
-              onClick={() => {
-                this.onDelete(contact.id);
-              }}
-            ></BtnDel>
-          </ListItemApp>
-        );
-      }
-      return null;
-    });
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase().trim();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
+    const filteredData = this.onFilter();
+
     return (
       <Box
         as="section"
@@ -129,17 +108,9 @@ export class App extends Component {
           {this.state.contacts.length > 0 ? 'Contacts' : 'No contacts'}
         </Box>
         {this.state.contacts.length > 1 && (
-          <FilterContacts
-            onChange={this.onChange}
-            value={this.state.filter}
-            onFilter={this.onFilter}
-          />
+          <FilterContacts onChange={this.onChange} value={this.state.filter} />
         )}
-        <ContactList
-          contacts={this.state.contacts}
-          filter={this.state.filter}
-          onDelete={this.onDelete}
-        />
+        <ContactList contacts={filteredData} onDelete={this.onDelete} />
       </Box>
     );
   }

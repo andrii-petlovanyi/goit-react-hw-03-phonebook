@@ -33,12 +33,3 @@ export const BtnDel = styled.button`
     border: ${p => p.theme.borders.normal} white;
   }
 `;
-
-export const ListItemApp = styled.li`
-  display: flex;
-  align-items: center;
-  height: 45px;
-  justify-content: space-between;
-  margin: 0;
-  margin-bottom: 8px;
-`;
